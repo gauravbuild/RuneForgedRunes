@@ -1,0 +1,16 @@
+name: RuneForgedRunes
+version: 1.0
+main: me.gauravbuilds.runeforgedrunes.RuneForgedRunes
+api-version: 1.21
+authors: [GauravBuilds]
+description: A high-performance Rune system plugin where players apply custom runes to items for permanent buffs using drag-and-drop mechanics.
+softdepend: [Vault, PlaceholderAPI]
+commands:
+  rune:
+    description: Main command for RuneForgedRunes
+    usage: /rune <give|list|reload>
+    permission: runeforged.admin
+permissions:
+  runeforged.admin:
+    description: Allows use of all rune commands
+    default: op

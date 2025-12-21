@@ -1,0 +1,23 @@
+drop-rates:
+  global-mobs: 0.0001
+  bosses: 1.0
+  mining: 0.0005
+  farming: 0.0005
+  fishing: 0.001
+
+messages:
+  prefix: "<gradient:#FFD700:#FFA500><b>RuneForged</b></gradient> <dark_gray>»</dark_gray> "
+  rune-received: "<gray>You received a <rune_name><gray>!"
+  rune-applied: "<green>Successfully applied <rune_name> <green>to your item!"
+  rune-failed: "<red>The rune shattered upon application!"
+  no-slots: "<red>This item has no empty rune slots!"
+  wrong-item: "<red>This rune cannot be applied to this item!"
+  config-reloaded: "<green>Configuration reloaded."
+  only-players: "<red>Only players can use this command."
+  invalid-rune: "<red>Invalid rune name."
+  invalid-player: "<red>Player not found."
+  usage: "<red>Usage: /rune <give|list|reload>"
+
+runes:
+  # Configuration for specific rune values could go here if needed
+  # For now, most logic is hardcoded but we can add overrides later
