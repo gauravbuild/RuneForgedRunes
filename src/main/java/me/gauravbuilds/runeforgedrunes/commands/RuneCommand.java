@@ -1,5 +1,6 @@
 package me.gauravbuilds.runeforgedrunes.commands;
 
+import me.gauravbuilds.runeforgedrunes.RuneCategory;
 import me.gauravbuilds.runeforgedrunes.RuneForgedRunes;
 import me.gauravbuilds.runeforgedrunes.RuneType;
 import me.gauravbuilds.runeforgedrunes.utils.ColorUtil;
@@ -49,14 +50,15 @@ public class RuneCommand implements CommandExecutor, TabCompleter {
         if (sub.equals("list")) {
             sender.sendMessage(ColorUtil.parse("<gold>--- Rune List ---"));
             for (RuneType type : RuneType.values()) {
-                sender.sendMessage(ColorUtil.parse("<gray>- " + type.name() + " (" + type.getDisplayName() + ")"));
+                sender.sendMessage(ColorUtil.parse("<gray>- " + type.getCategory().name() + ": " + type.name()));
             }
             return true;
         }
 
         if (sub.equals("give")) {
-            if (args.length < 3) {
-                sender.sendMessage(ColorUtil.parse("<red>Usage: /rune give <player> <rune> [amount]"));
+            // Usage: /rune give <player> <category> <rune> <chance> <amount>
+            if (args.length < 5) {
+                sender.sendMessage(ColorUtil.parse("<red>Usage: /rune give <player> <category> <rune> <chance> [amount]"));
                 return true;
             }
 
@@ -66,26 +68,52 @@ public class RuneCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
 
+            // Category check (Arg 2) - Just for validation, we find rune in next arg
+            String categoryStr = args[2].toUpperCase();
+            try {
+                RuneCategory.valueOf(categoryStr);
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage(ColorUtil.parse("<red>Invalid category."));
+                return true;
+            }
+
+            // Rune check (Arg 3)
             RuneType type;
             try {
-                type = RuneType.valueOf(args[2].toUpperCase());
+                type = RuneType.valueOf(args[3].toUpperCase());
             } catch (IllegalArgumentException e) {
                 sender.sendMessage(ColorUtil.parse(plugin.getConfigManager().getMessage("invalid-rune")));
                 return true;
             }
 
+            // Validate category matches rune
+            if (type.getCategory() != RuneCategory.valueOf(categoryStr)) {
+                sender.sendMessage(ColorUtil.parse("<red>That rune does not belong to the " + categoryStr + " category!"));
+                return true;
+            }
+
+            // Chance (Arg 4)
+            double chance;
+            try {
+                chance = Double.parseDouble(args[4]);
+                if (chance < 0 || chance > 100) throw new NumberFormatException();
+            } catch (NumberFormatException e) {
+                sender.sendMessage(ColorUtil.parse("<red>Chance must be a number between 0 and 100."));
+                return true;
+            }
+
+            // Amount (Arg 5) - Optional, default 1
             int amount = 1;
-            if (args.length > 3) {
+            if (args.length > 5) {
                 try {
-                    amount = Integer.parseInt(args[3]);
+                    amount = Integer.parseInt(args[5]);
                 } catch (NumberFormatException ignored) {}
             }
 
-            ItemStack item = plugin.getRuneManager().createRune(type);
+            ItemStack item = plugin.getRuneManager().createRune(type, chance);
             item.setAmount(amount);
             target.getInventory().addItem(item);
-            sender.sendMessage(ColorUtil.parse("<green>Given " + amount + " " + type.getDisplayName() + " Rune(s) to " + target.getName()));
-            target.sendMessage(ColorUtil.parse(plugin.getConfigManager().getMessage("rune-received").replace("<rune_name>", type.getDisplayName())));
+            sender.sendMessage(ColorUtil.parse("<green>Given " + amount + " " + type.getDisplayName() + " Rune (" + chance + "%) to " + target.getName()));
             return true;
         }
 
@@ -101,8 +129,29 @@ public class RuneCommand implements CommandExecutor, TabCompleter {
         if (args.length == 2 && args[0].equalsIgnoreCase("give")) {
             return null; // Player list
         }
+        // Arg 2: Category
         if (args.length == 3 && args[0].equalsIgnoreCase("give")) {
-            return Arrays.stream(RuneType.values()).map(Enum::name).collect(Collectors.toList());
+            return Arrays.stream(RuneCategory.values()).map(Enum::name).collect(Collectors.toList());
+        }
+        // Arg 3: Rune (Filtered by Category)
+        if (args.length == 4 && args[0].equalsIgnoreCase("give")) {
+            try {
+                RuneCategory cat = RuneCategory.valueOf(args[2].toUpperCase());
+                return Arrays.stream(RuneType.values())
+                        .filter(r -> r.getCategory() == cat)
+                        .map(Enum::name)
+                        .collect(Collectors.toList());
+            } catch (IllegalArgumentException e) {
+                return new ArrayList<>();
+            }
+        }
+        // Arg 4: Chance
+        if (args.length == 5 && args[0].equalsIgnoreCase("give")) {
+            return Arrays.asList("10", "25", "50", "75", "100");
+        }
+        // Arg 5: Amount
+        if (args.length == 6 && args[0].equalsIgnoreCase("give")) {
+            return Arrays.asList("1", "64");
         }
         return new ArrayList<>();
     }

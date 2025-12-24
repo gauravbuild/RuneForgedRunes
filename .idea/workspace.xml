@@ -4,36 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2426c59-d741-4e22-9469-5c55fd12fe98" name="Changes" comment="" />
+    <list default="true" id="b2426c59-d741-4e22-9469-5c55fd12fe98" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/RuneCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/RuneType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/RuneType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/commands/RuneCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/commands/RuneCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/listeners/RuneApplyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/listeners/RuneApplyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/managers/RuneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/managers/RuneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/managers/SlotManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/gauravbuilds/runeforgedrunes/managers/SlotManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/RuneForgedRunes-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/RuneForgedRunes-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/RuneType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/RuneType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/commands/RuneCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/commands/RuneCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/listeners/RuneApplyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/listeners/RuneApplyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/managers/RuneManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/managers/RuneManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/managers/RuneManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/managers/RuneManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/managers/SlotManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/gauravbuilds/runeforgedrunes/managers/SlotManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-RuneForgedRunes-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-RuneForgedRunes-1.0-SNAPSHOT.jar" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="3790tqhw5VipNWs84AyBTXecTmW" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.RuneForgedRunes [package].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/OneDrive/Desktop/RuneForgedRunes/pom.xml",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.RuneForgedRunes [package].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/OneDrive/Desktop/RuneForgedRunes/pom.xml&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -50,6 +84,8 @@
       <option name="presentableId" value="Default" />
       <updated>1766300197844</updated>
       <workItem from="1766300201168" duration="1626000" />
+      <workItem from="1766320014842" duration="5561000" />
+      <workItem from="1766387263351" duration="125000" />
     </task>
     <servers />
   </component>

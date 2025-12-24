@@ -2,7 +2,6 @@ package me.gauravbuilds.runeforgedrunes.managers;
 
 import me.gauravbuilds.runeforgedrunes.RuneRarity;
 import me.gauravbuilds.runeforgedrunes.RuneType;
-import me.gauravbuilds.runeforgedrunes.utils.ColorUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -20,40 +19,45 @@ public class RuneManager {
 
     private final JavaPlugin plugin;
     private final NamespacedKey runeKey;
+    private final NamespacedKey chanceKey;
 
     public RuneManager(JavaPlugin plugin) {
         this.plugin = plugin;
         this.runeKey = new NamespacedKey(plugin, "rune_type");
+        this.chanceKey = new NamespacedKey(plugin, "rune_chance");
     }
 
     public ItemStack createRune(RuneType type) {
+        // Default chance if not specified
+        return createRune(type, type.getRarity().getDefaultChance());
+    }
+
+    public ItemStack createRune(RuneType type, double chance) {
         Material mat = getMaterialForRarity(type.getRarity());
         ItemStack item = new ItemStack(mat);
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
-            // Name: [Color] [Rune Name] Rune
             Component name = Component.text("♦ ", type.getRarity().getColor())
                     .append(Component.text(type.getDisplayName() + " Rune", type.getRarity().getColor()))
                     .decoration(TextDecoration.ITALIC, false);
-            
+
             meta.displayName(name);
 
-            // Lore
             List<Component> lore = new ArrayList<>();
             lore.add(Component.empty());
             lore.add(Component.text("Tier: ", NamedTextColor.GRAY)
                     .append(Component.text(type.getRarity().getDisplayName(), type.getRarity().getColor()))
                     .decoration(TextDecoration.ITALIC, false));
-            
+
             lore.add(Component.text("Success Chance: ", NamedTextColor.GRAY)
-                    .append(Component.text((int) type.getRarity().getDefaultChance() + "%", NamedTextColor.GREEN))
+                    .append(Component.text((int) chance + "%", NamedTextColor.GREEN))
                     .decoration(TextDecoration.ITALIC, false));
-            
+
             lore.add(Component.text("Applicable to: ", NamedTextColor.GRAY)
                     .append(Component.text(type.getTarget().getDisplayName(), NamedTextColor.YELLOW))
                     .decoration(TextDecoration.ITALIC, false));
-            
+
             lore.add(Component.empty());
             lore.add(Component.text("Description:", NamedTextColor.GRAY)
                     .decoration(TextDecoration.ITALIC, false));
@@ -62,8 +66,8 @@ public class RuneManager {
 
             meta.lore(lore);
 
-            // PDC
             meta.getPersistentDataContainer().set(runeKey, PersistentDataType.STRING, type.name());
+            meta.getPersistentDataContainer().set(chanceKey, PersistentDataType.DOUBLE, chance);
 
             item.setItemMeta(meta);
         }
@@ -81,8 +85,10 @@ public class RuneManager {
         }
     }
 
-    public boolean isRune(ItemStack item) {
-        return getRuneFromItem(item) != null;
+    public double getChanceFromItem(ItemStack item) {
+        if (item == null || !item.hasItemMeta()) return 0.0;
+        Double chance = item.getItemMeta().getPersistentDataContainer().get(chanceKey, PersistentDataType.DOUBLE);
+        return chance != null ? chance : 0.0;
     }
 
     private Material getMaterialForRarity(RuneRarity rarity) {
