@@ -18,6 +18,7 @@ import java.util.List;
 public class RuneManager {
 
     private final JavaPlugin plugin;
+    // These keys define where we store the data
     private final NamespacedKey runeKey;
     private final NamespacedKey chanceKey;
 
@@ -27,8 +28,11 @@ public class RuneManager {
         this.chanceKey = new NamespacedKey(plugin, "rune_chance");
     }
 
+    public ItemStack getRuneItem(RuneType type) {
+        return createRune(type, 100.0);
+    }
+
     public ItemStack createRune(RuneType type) {
-        // Default chance if not specified
         return createRune(type, type.getRarity().getDefaultChance());
     }
 
@@ -38,12 +42,14 @@ public class RuneManager {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
+            // 1. Visual Name (Adventure API)
             Component name = Component.text("♦ ", type.getRarity().getColor())
                     .append(Component.text(type.getDisplayName() + " Rune", type.getRarity().getColor()))
                     .decoration(TextDecoration.ITALIC, false);
 
             meta.displayName(name);
 
+            // 2. Lore
             List<Component> lore = new ArrayList<>();
             lore.add(Component.empty());
             lore.add(Component.text("Tier: ", NamedTextColor.GRAY)
@@ -66,6 +72,8 @@ public class RuneManager {
 
             meta.lore(lore);
 
+            // 3. NBT DATA (The most important part for the Forge!)
+            // We store the internal ID (e.g., "GEM_FINDER") and the chance (e.g., 50.0)
             meta.getPersistentDataContainer().set(runeKey, PersistentDataType.STRING, type.name());
             meta.getPersistentDataContainer().set(chanceKey, PersistentDataType.DOUBLE, chance);
 

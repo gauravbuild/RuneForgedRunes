@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RuneForgedRunes.iml" filepath="$PROJECT_DIR$/RuneForgedRunes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pom.xml.iml" filepath="$PROJECT_DIR$/.idea/pom.xml.iml" />
     </modules>
   </component>
 </project>

@@ -7,6 +7,7 @@ import me.gauravbuilds.runeforgedrunes.managers.RuneManager;
 import me.gauravbuilds.runeforgedrunes.managers.SlotManager;
 import me.gauravbuilds.runeforgedrunes.tasks.PassiveRuneTask;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 public class RuneForgedRunes extends JavaPlugin {
 
@@ -29,6 +30,7 @@ public class RuneForgedRunes extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FarmingForagingListener(this), this);
         getServer().getPluginManager().registerEvents(new EnchantingSorceryListener(this), this);
         getServer().getPluginManager().registerEvents(new LootListener(this), this);
+        getServer().getPluginManager().registerEvents(new me.gauravbuilds.runeforgedrunes.gui.RuneGUI(this), this);
 
         // Commands
         getCommand("rune").setExecutor(new RuneCommand(this));
@@ -55,5 +57,9 @@ public class RuneForgedRunes extends JavaPlugin {
 
     public SlotManager getSlotManager() {
         return slotManager;
+    }
+
+    public @NotNull String getMessage(String s) {
+        return s;
     }
 }

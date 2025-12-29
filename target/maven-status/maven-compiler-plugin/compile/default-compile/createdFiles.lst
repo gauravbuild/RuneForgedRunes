@@ -15,4 +15,5 @@ me\gauravbuilds\runeforgedrunes\RuneForgedRunes.class
 me\gauravbuilds\runeforgedrunes\listeners\EnchantingSorceryListener.class
 me\gauravbuilds\runeforgedrunes\listeners\FarmingForagingListener.class
 me\gauravbuilds\runeforgedrunes\RuneCategory.class
+me\gauravbuilds\runeforgedrunes\gui\RuneGUI.class
 me\gauravbuilds\runeforgedrunes\managers\ConfigManager.class
