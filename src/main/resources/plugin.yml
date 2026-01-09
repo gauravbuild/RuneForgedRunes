@@ -15,3 +15,12 @@ commands:
     description: Opens the Rune Repository
     usage: /runes [subcommand]
     aliases: [rune]
+  runedebug:
+    description: Debug command for error
+    usage: /runedebug
+  runeforge:
+    description: Open the Rune Forge
+    aliases: [ forge ]
+  runesalvage:
+    description: Open Salvage
+    aliases: [salvage]

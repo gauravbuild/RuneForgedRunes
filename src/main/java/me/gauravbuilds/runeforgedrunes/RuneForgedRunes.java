@@ -6,6 +6,7 @@ import me.gauravbuilds.runeforgedrunes.managers.ConfigManager;
 import me.gauravbuilds.runeforgedrunes.managers.RuneManager;
 import me.gauravbuilds.runeforgedrunes.managers.SlotManager;
 import me.gauravbuilds.runeforgedrunes.tasks.PassiveRuneTask;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,11 +31,24 @@ public class RuneForgedRunes extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FarmingForagingListener(this), this);
         getServer().getPluginManager().registerEvents(new EnchantingSorceryListener(this), this);
         getServer().getPluginManager().registerEvents(new LootListener(this), this);
+        getServer().getPluginManager().registerEvents(new me.gauravbuilds.runeforgedrunes.listeners.SalvageListener(this), this);
+        getServer().getPluginManager().registerEvents(new me.gauravbuilds.runeforgedrunes.listeners.ForgeListener(this), this);
         getServer().getPluginManager().registerEvents(new me.gauravbuilds.runeforgedrunes.gui.RuneGUI(this), this);
 
         // Commands
         getCommand("rune").setExecutor(new RuneCommand(this));
         getCommand("rune").setTabCompleter(new RuneCommand(this));
+        getCommand("runedebug").setExecutor(new me.gauravbuilds.runeforgedrunes.commands.DebugCommand(this));
+        getCommand("runeforge").setExecutor((sender, command, label, args) -> {
+            if (sender instanceof Player) {
+                new me.gauravbuilds.runeforgedrunes.gui.ForgeGui().open((Player) sender);
+            }
+            return true;
+        });
+        getCommand("runesalvage").setExecutor((sender, command, label, args) -> {
+            if (sender instanceof Player) new me.gauravbuilds.runeforgedrunes.gui.SalvageGui().open((Player) sender);
+            return true;
+        });
 
         // Tasks
         new PassiveRuneTask(this).runTaskTimer(this, 20L, 20L); // 1 second

@@ -1,16 +1,23 @@
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\FarmingForagingListener.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\RuneApplyListener.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\managers\RuneManager.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\tasks\PassiveRuneTask.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\MiningListener.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneForgedRunes.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneType.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\LootListener.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\managers\SlotManager.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\managers\ConfigManager.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneTarget.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\utils\ColorUtil.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\EnchantingSorceryListener.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\CombatListener.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneRarity.java
-D:\OneDrive\Desktop\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\commands\RuneCommand.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\FarmingForagingListener.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\MiningListener.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\managers\ConfigManager.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\gui\SalvageGui.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\ForgeListener.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\managers\SlotManager.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\tasks\PassiveRuneTask.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\EnchantingSorceryListener.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\managers\RuneManager.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneForgedRunes.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneRarity.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\gui\ForgeGui.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneCategory.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\LootListener.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneType.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\utils\ColorUtil.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\RuneTarget.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\commands\DebugCommand.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\commands\RuneCommand.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\gui\RuneGUI.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\RuneApplyListener.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\CombatListener.java
+D:\OneDrive\Desktop\Minecraft Plugins\RuneForgedRunes\src\main\java\me\gauravbuilds\runeforgedrunes\listeners\SalvageListener.java

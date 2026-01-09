@@ -1,10 +1,7 @@
 package me.gauravbuilds.runeforgedrunes.managers;
 
-import me.gauravbuilds.runeforgedrunes.RuneTarget;
 import me.gauravbuilds.runeforgedrunes.RuneType;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
+import me.gauravbuilds.runeforgedrunes.utils.ColorUtil;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -22,10 +19,11 @@ public class SlotManager {
     private final NamespacedKey runesKey;
     private static final int MAX_SLOTS = 3;
 
-    private static final Component EMPTY_SLOT = Component.text("[", NamedTextColor.DARK_GRAY)
-            .append(Component.text("Empty Rune Slot", NamedTextColor.GRAY))
-            .append(Component.text("]", NamedTextColor.DARK_GRAY))
-            .decoration(TextDecoration.ITALIC, false);
+    // --- YOUR CUSTOM DESIGN ---
+    private static final String HEADER = ColorUtil.parse("&f&m---------------");
+    private static final String TITLE = ColorUtil.parse("&9&lApplied Runes:");
+    private static final String BULLET = ColorUtil.parse("&f- ");
+    private static final String EMPTY = ColorUtil.parse("&f- None");
 
     public SlotManager(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -53,7 +51,6 @@ public class SlotManager {
     public boolean applyRune(ItemStack item, RuneType rune) {
         if (!hasEmptySlot(item)) return false;
 
-        // CRITICAL FIX: Wrap in ArrayList to ensure mutability
         List<RuneType> currentRunes = new ArrayList<>(getAppliedRunes(item));
         currentRunes.add(rune);
 
@@ -62,23 +59,68 @@ public class SlotManager {
         return true;
     }
 
+    // --- THE MISSING METHOD (ADDED HERE) ---
+    public void forceUpdateRunes(ItemStack item, List<RuneType> newRunes) {
+        saveRunes(item, newRunes);
+        updateLore(item, newRunes);
+    }
+    // ----------------------------------------
+
     public void ensureSlots(ItemStack item) {
         if (item == null || !item.hasItemMeta()) return;
-        if (!isTargetable(item)) return;
-
-        ItemMeta meta = item.getItemMeta();
-        if (!meta.getPersistentDataContainer().has(runesKey, PersistentDataType.STRING)) {
-            meta.getPersistentDataContainer().set(runesKey, PersistentDataType.STRING, "");
-            item.setItemMeta(meta);
-            updateLore(item, new ArrayList<>());
+        if (isTargetable(item)) {
+            ItemMeta meta = item.getItemMeta();
+            if (!meta.getPersistentDataContainer().has(runesKey, PersistentDataType.STRING)) {
+                meta.getPersistentDataContainer().set(runesKey, PersistentDataType.STRING, "");
+                item.setItemMeta(meta);
+                updateLore(item, new ArrayList<>());
+            }
         }
     }
 
-    private boolean isTargetable(ItemStack item) {
-        return RuneTarget.MELEE_WEAPON.includes(item) ||
-                RuneTarget.ARMOR.includes(item) ||
-                RuneTarget.TOOL.includes(item) ||
-                RuneTarget.BOW.includes(item);
+    private void updateLore(ItemStack item, List<RuneType> runes) {
+        ItemMeta meta = item.getItemMeta();
+        List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList<>();
+
+        removeRuneBlock(lore);
+        cleanUpLore(lore);
+
+        if (!lore.isEmpty()) {
+            lore.add("");
+        }
+
+        List<String> runeBlock = new ArrayList<>();
+        runeBlock.add(HEADER);
+        runeBlock.add("");
+        runeBlock.add(TITLE);
+
+        for (int i = 0; i < MAX_SLOTS; i++) {
+            if (i < runes.size()) {
+                runeBlock.add(BULLET + ColorUtil.parse(runes.get(i).getDisplayName()));
+            } else {
+                runeBlock.add(EMPTY);
+            }
+        }
+        runeBlock.add("");
+        runeBlock.add(HEADER);
+
+        lore.addAll(runeBlock);
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+    }
+
+    private void removeRuneBlock(List<String> lore) {
+        if (lore.isEmpty()) return;
+        lore.removeIf(line ->
+                line.equals(HEADER) || line.equals(TITLE) ||
+                        line.startsWith(BULLET) || line.equals(EMPTY)
+        );
+    }
+
+    private void cleanUpLore(List<String> lore) {
+        while (!lore.isEmpty() && lore.get(lore.size() - 1).isEmpty()) {
+            lore.remove(lore.size() - 1);
+        }
     }
 
     private void saveRunes(ItemStack item, List<RuneType> runes) {
@@ -88,44 +130,11 @@ public class SlotManager {
         item.setItemMeta(meta);
     }
 
-    private void updateLore(ItemStack item, List<RuneType> runes) {
-        ItemMeta meta = item.getItemMeta();
-        List<Component> lore = meta.hasLore() ? new ArrayList<>(meta.lore()) : new ArrayList<>();
-
-        // Remove existing rune/slot lines
-        lore.removeIf(this::isRuneLine);
-
-        // Add visual gap/spacer if lore exists and last line isn't empty
-        if (!lore.isEmpty()) {
-            Component lastLine = lore.get(lore.size() - 1);
-            if (!lastLine.equals(Component.empty())) {
-                lore.add(Component.empty());
-            }
-        }
-
-        // Add applied runes
-        for (RuneType rune : runes) {
-            lore.add(Component.text("♦ " + rune.getDisplayName(), rune.getRarity().getColor())
-                    .decoration(TextDecoration.ITALIC, false));
-        }
-
-        // Add empty slots
-        int emptySlots = MAX_SLOTS - runes.size();
-        for (int i = 0; i < emptySlots; i++) {
-            lore.add(EMPTY_SLOT);
-        }
-
-        meta.lore(lore);
-        item.setItemMeta(meta);
-    }
-
-    private boolean isRuneLine(Component c) {
-        if (c.equals(EMPTY_SLOT)) return true;
-
-        String text = net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText().serialize(c);
-        if (text.startsWith("♦ ")) return true;
-        if (text.contains("Empty Rune Slot")) return true;
-
-        return false;
+    private boolean isTargetable(ItemStack item) {
+        String t = item.getType().name();
+        return t.endsWith("_SWORD") || t.endsWith("_AXE") || t.endsWith("_PICKAXE") ||
+                t.endsWith("_SHOVEL") || t.endsWith("_HOE") || t.endsWith("_HELMET") ||
+                t.endsWith("_CHESTPLATE") || t.endsWith("_LEGGINGS") || t.endsWith("_BOOTS") ||
+                t.equals("BOW") || t.equals("CROSSBOW");
     }
 }

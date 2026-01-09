@@ -5,6 +5,7 @@ import me.gauravbuilds.runeforgedrunes.RuneType;
 import me.gauravbuilds.runeforgedrunes.managers.SlotManager;
 import me.gauravbuilds.runeforgedrunes.utils.ColorUtil;
 import net.kyori.adventure.text.Component;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -169,9 +170,9 @@ public class EnchantingSorceryListener implements Listener {
             if (System.currentTimeMillis() - last > 10000) {
                 player.setVelocity(player.getLocation().getDirection().multiply(1.5).setY(1));
                 doubleJumpCooldown.put(player.getUniqueId(), System.currentTimeMillis());
-                player.sendMessage(ColorUtil.parse("<green>Whoosh!"));
+                player.sendMessage(ChatColor.GREEN + "Whoosh!");
             } else {
-                player.sendMessage(ColorUtil.parse("<red>Double Jump on cooldown!"));
+                player.sendMessage(ChatColor.RED + "Double Jump on cooldown!");
             }
         }
     }
