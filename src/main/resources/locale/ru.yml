@@ -1,0 +1,9 @@
+messages:
+  only-players: '&cЭта команда доступна только игрокам.'
+  config-reloaded: '&aНастройки перезагружены.'
+  invalid-player: '&cИгрок не найден.'
+  rune-received: '&aВы получили руну <rune_name>!'
+  rune-applied: '&aРуна успешно применена!'
+  rune-failed: '&cРуна разрушилась.'
+  no-slots: '&cНет свободных гнёзд.'
+  wrong-item: '&cЭта руна не подходит к предмету.'

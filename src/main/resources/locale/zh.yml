@@ -1,0 +1,9 @@
+messages:
+  only-players: '&c只有玩家可以使用此命令。'
+  config-reloaded: '&a配置已重新加载。'
+  invalid-player: '&c找不到玩家。'
+  rune-received: '&a你获得了符文 <rune_name>！'
+  rune-applied: '&a符文镶嵌成功！'
+  rune-failed: '&c符文碎裂了。'
+  no-slots: '&c没有空余槽位。'
+  wrong-item: '&c此符文无法用于该物品。'

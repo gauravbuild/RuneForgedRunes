@@ -1,0 +1,9 @@
+messages:
+  only-players: '&cهذا الأمر للاعبين فقط.'
+  config-reloaded: '&aتم إعادة تحميل الإعدادات.'
+  invalid-player: '&cلم يتم العثور على اللاعب.'
+  rune-received: '&aحصلت على الرمز <rune_name>!'
+  rune-applied: '&aتم تطبيق الرمز بنجاح!'
+  rune-failed: '&cتحطم الرمز.'
+  no-slots: '&cلا توجد فتحات فارغة.'
+  wrong-item: '&cلا يمكن تطبيق هذا الرمز على هذا العنصر.'

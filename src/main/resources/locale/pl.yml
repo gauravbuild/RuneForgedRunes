@@ -1,0 +1,9 @@
+messages:
+  only-players: '&cTylko gracze mogą użyć tej komendy.'
+  config-reloaded: '&aKonfiguracja przeładowana.'
+  invalid-player: '&cNie znaleziono gracza.'
+  rune-received: '&aOtrzymano runę <rune_name>!'
+  rune-applied: '&aRuna została nałożona!'
+  rune-failed: '&cRuna się rozpadła.'
+  no-slots: '&cBrak wolnych miejsc.'
+  wrong-item: '&cTa runa nie pasuje do przedmiotu.'

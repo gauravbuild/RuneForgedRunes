@@ -1,0 +1,135 @@
+drop-rates:
+  global-mobs: 0.0001
+  bosses: 1.0
+  mining: 0.0005
+  farming: 0.0005
+  fishing: 0.001
+
+ability-limits:
+  max-radius: 12
+  max-damage: 20
+  max-duration-seconds: 10
+  max-bounces: 8
+  max-chain-blocks: 32
+  max-projectile-speed: 4
+
+messages:
+  prefix: "<gradient:#FFD700:#FFA500><b>RuneForged</b></gradient> <dark_gray>»</dark_gray> "
+  rune-received: "<gray>You received a <rune_name><gray>!"
+  rune-applied: "<green>Successfully applied <rune_name> <green>to your item!"
+  rune-failed: "<red>The rune shattered upon application!"
+  no-slots: "<red>This item has no empty rune slots!"
+  wrong-item: "<red>This rune cannot be applied to this item!"
+  config-reloaded: "<green>Configuration reloaded."
+  only-players: "<red>Only players can use this command."
+  invalid-rune: "<red>Invalid rune name."
+  invalid-player: "<red>Player not found."
+  usage: "<red>Usage: /rune <give|list|reload>"
+
+locale: en
+visual-formatting:
+  max-sockets-per-item: 3
+  sockets:
+    empty-socket: "&8[&7✧ Empty Socket&8]"
+    filled-socket: "&8[&d✦ &f{rune_name}&8]"
+  applied-lore:
+    header: "&d&lRunes:"
+    rune-title: "&8▪ {rune_color}{rune_name}"
+
+gui:
+  forge:
+    title: "&8[&4Rune Forge&8]"
+    size: 45
+    filler-material: BLACK_STAINED_GLASS_PANE
+    accent-material: RED_STAINED_GLASS_PANE
+    slots:
+      weapon: 20
+      rune: 22
+      catalyst: 24
+      button: 40
+  salvage:
+    title: "&8[&cRune Salvage&8]"
+    size: 45
+    filler-material: BLACK_STAINED_GLASS_PANE
+    input-slot: 13
+  repository:
+    title: "&8Rune Repository"
+    category-title: "&8Category: {category}"
+    main-size: 27
+    category-size: 45
+    main-filler-material: BLACK_STAINED_GLASS_PANE
+    category-filler-material: GRAY_STAINED_GLASS_PANE
+    back-slot: 36
+    back-material: ARROW
+    back-name: "&cGo Back"
+    categories:
+      combat:
+        enabled: true
+        slot: 10
+        material: NETHERITE_SWORD
+        name: "&6&lCombat"
+        lore: ["&7Click to view combat runes."]
+      mining:
+        enabled: true
+        slot: 11
+        material: NETHERITE_PICKAXE
+        name: "&6&lMining"
+        lore: ["&7Click to view mining runes."]
+      farming:
+        enabled: true
+        slot: 12
+        material: NETHERITE_HOE
+        name: "&6&lFarming"
+        lore: ["&7Click to view farming runes."]
+      custom:
+        enabled: true
+        slot: 13
+        material: NETHER_STAR
+        name: "&6&lCustom"
+        lore: ["&7Click to view custom runes."]
+      foraging:
+        enabled: true
+        slot: 14
+        material: NETHERITE_AXE
+        name: "&6&lForaging"
+        lore: ["&7Click to view foraging runes."]
+      enchanting:
+        enabled: true
+        slot: 15
+        material: ENCHANTING_TABLE
+        name: "&6&lEnchanting"
+        lore: ["&7Click to view enchanting runes."]
+      sorcery:
+        enabled: true
+        slot: 16
+        material: BEACON
+        name: "&6&lSorcery"
+        lore: ["&7Click to view sorcery runes."]
+    category-rune-slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  editor:
+    title: "&8✦ Rune Editor"
+    size: 54
+    edit-size: 27
+    abilities-size: 27
+    ability-size: 54
+    catalog-size: 54
+    options-size: 54
+    filler-material: BLACK_STAINED_GLASS_PANE
+  shop:
+    title: "&8✦ Rune Shop &7(Page {page})"
+    size: 45
+    filler-material: BLACK_STAINED_GLASS_PANE
+    bottom:
+      filler-material: GRAY_STAINED_GLASS_PANE
+      previous:
+        material: ARROW
+        name: "&ePrevious Page"
+        lore: ["&7View the previous shop page."]
+      next:
+        material: ARROW
+        name: "&eNext Page"
+        lore: ["&7View the next shop page."]
+      info:
+        material: BOOK
+        name: "&dRune Shop"
+        lore: ["&7Click a rune to purchase it."]

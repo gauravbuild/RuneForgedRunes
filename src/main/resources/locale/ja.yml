@@ -1,0 +1,9 @@
+messages:
+  only-players: '&cプレイヤーのみ使用できます。'
+  config-reloaded: '&a設定を再読み込みしました。'
+  invalid-player: '&cプレイヤーが見つかりません。'
+  rune-received: '&aルーン <rune_name> を受け取りました！'
+  rune-applied: '&aルーンを付与しました！'
+  rune-failed: '&cルーンが壊れました。'
+  no-slots: '&c空きスロットがありません。'
+  wrong-item: '&cこのアイテムには付与できません。'

@@ -1,0 +1,94 @@
+# Add these strings to a rune ability's effects list in runes.yml or the in-game editor.
+# Abilities also have a trigger, chance (0-100), and cooldown (seconds).
+triggers: [ATTACK_ENTITY, TAKE_DAMAGE, KILL_ENTITY, MINE_BLOCK, BLOCK_DROPS, ITEM_DAMAGE, GAIN_XP, FARMLAND_TRAMPLE, DEATH, ANVIL, BOW_HIT, HUNGER_CHANGE, PASSIVE, BOW_SHOOT, RIGHT_CLICK, FISH_CAST, FISH_REEL, FISH_CAUGHT, SWORD_SWING, DOUBLE_JUMP, SNEAK]
+effects:
+  HEAL: 'HEAL:amount=2 (heals the wearer in health points)'
+  FREEZE: 'FREEZE:ticks=60 (freezes a living target)'
+  BLEED: 'BLEED:ticks=60,damage=1 (damages a living target once per second)'
+  VORTEX_PULL: 'VORTEX_PULL:radius=5,speed=0.5 (pulls nearby entities toward the wearer)'
+  POTION: 'POTION:type=SPEED,ticks=100,level=2,target=SELF (target SELF or VICTIM; potion names below)'
+  PARTICLE: 'PARTICLE:type=FLAME,count=10,shape=POINT,radius=1 (at target, or wearer if no target; shapes POINT, CIRCLE, SPHERE, SPIRAL)'
+  PLAY_SOUND: 'PLAY_SOUND:sound=ENTITY_PLAYER_LEVELUP (sound heard by wearer)'
+  COMMAND: 'COMMAND:console:say {player} forged a rune (also supports player; {player} inserts wearer name)'
+  BLACK_HOLE: 'BLACK_HOLE:radius=5,duration=3 (pulls nearby living entities toward target point)'
+  CHAIN_LIGHTNING: 'CHAIN_LIGHTNING:damage=3,bounces=3,range=6 (chains between living targets)'
+  METEOR_STRIKE: 'METEOR_STRIKE:radius=4,damage=6 (visual meteor and no block damage)'
+  VEIN_MINE: 'VEIN_MINE:max_blocks=16 (breaks connected blocks of the mined type on MINE_BLOCK)'
+  TIMBER: 'TIMBER:max_blocks=16 (breaks connected logs on MINE_BLOCK)'
+  PROJECTILE: 'PROJECTILE:type=SNOWBALL,speed=1.5 (types SNOWBALL, ARROW, FIREBALL)'
+  DAMAGE_BOOST: 'DAMAGE_BOOST:multiplier=1.5,health_below=20 (ATTACK_ENTITY or BOW_HIT)'
+  DAMAGE_REDUCTION: 'DAMAGE_REDUCTION:percent=5 (TAKE_DAMAGE)'
+  REFLECT_DAMAGE: 'REFLECT_DAMAGE:percent=10 (TAKE_DAMAGE)'
+  CANCEL_DAMAGE: 'CANCEL_DAMAGE: (TAKE_DAMAGE or ITEM_DAMAGE)'
+  LIGHTNING: 'LIGHTNING:damage=2 (visual lightning and damage to a target)'
+  CANCEL_HUNGER: 'CANCEL_HUNGER: (HUNGER_CHANGE)'
+  EXTRA_DROP: 'EXTRA_DROP:material=DIAMOND,block=STONE (MINE_BLOCK)'
+  MULTIPLY_XP: 'MULTIPLY_XP:multiplier=2 (MINE_BLOCK or GAIN_XP)'
+  SMELT_DROP: 'SMELT_DROP: (BLOCK_DROPS)'
+  MAGNET_DROPS: 'MAGNET_DROPS: (BLOCK_DROPS)'
+  TUNNEL: 'TUNNEL:radius=1 (MINE_BLOCK, 3x3)'
+  HARVEST: 'HARVEST:radius=1 (MINE_BLOCK, mature crops)'
+  REPLANT: 'REPLANT: (MINE_BLOCK, mature crops)'
+  FERTILIZE: 'FERTILIZE: (RIGHT_CLICK, consumes bone meal)'
+  CROP_YIELD: 'CROP_YIELD:percent=20 (MINE_BLOCK)'
+  DOUBLE_LOOT: 'DOUBLE_LOOT:animals=true (KILL_ENTITY)'
+  CANCEL_TRAMPLE: 'CANCEL_TRAMPLE: (FARMLAND_TRAMPLE)'
+  GROW_CROPS: 'GROW_CROPS:radius=5 (PASSIVE)'
+  GOLD_FROM_CROPS: 'GOLD_FROM_CROPS: (MINE_BLOCK)'
+  CLEAR_LEAVES: 'CLEAR_LEAVES:radius=1 (MINE_BLOCK, logs)'
+  PLANT_SAPLING: 'PLANT_SAPLING: (MINE_BLOCK, natural logs)'
+  DOUBLE_LOG: 'DOUBLE_LOG: (MINE_BLOCK)'
+  SILK_DROP: 'SILK_DROP: (MINE_BLOCK, leaves)'
+  CHARCOAL_DROP: 'CHARCOAL_DROP: (MINE_BLOCK, natural logs)'
+  NATURE_DROP: 'NATURE_DROP: (MINE_BLOCK, natural logs)'
+  STRIP_LOGS: 'STRIP_LOGS:radius=2 (RIGHT_CLICK)'
+  SOULBOUND: 'SOULBOUND: (DEATH, one use)'
+  PRESERVE_ITEM: 'PRESERVE_ITEM: (ITEM_DAMAGE, one use)'
+  REPAIR_WITH_XP: 'REPAIR_WITH_XP:amount=2 (GAIN_XP)'
+  ORE_POTION: 'ORE_POTION: (MINE_BLOCK)'
+  SHOW_HEALTH: 'SHOW_HEALTH: (PASSIVE)'
+  ANVIL_DISCOUNT: 'ANVIL_DISCOUNT:percent=20 (ANVIL)'
+  PREVENT_FALL: 'PREVENT_FALL: (TAKE_DAMAGE)'
+  WATER_POTION: 'WATER_POTION:type=DOLPHINS_GRACE,ticks=40 (PASSIVE)'
+# For PARTICLE:type use one of the names in partciles-list.yml.
+# Available potion types on this server are refreshed on each startup.
+potions:
+  - ABSORPTION
+  - BAD_OMEN
+  - BLINDNESS
+  - CONDUIT_POWER
+  - DARKNESS
+  - DOLPHINS_GRACE
+  - FIRE_RESISTANCE
+  - GLOWING
+  - HASTE
+  - HEALTH_BOOST
+  - HERO_OF_THE_VILLAGE
+  - HUNGER
+  - INFESTED
+  - INSTANT_DAMAGE
+  - INSTANT_HEALTH
+  - INVISIBILITY
+  - JUMP_BOOST
+  - LEVITATION
+  - LUCK
+  - MINING_FATIGUE
+  - NAUSEA
+  - NIGHT_VISION
+  - OOZING
+  - POISON
+  - RAID_OMEN
+  - REGENERATION
+  - RESISTANCE
+  - SATURATION
+  - SLOWNESS
+  - SLOW_FALLING
+  - SPEED
+  - STRENGTH
+  - TRIAL_OMEN
+  - UNLUCK
+  - WATER_BREATHING
+  - WEAKNESS
+  - WEAVING
+  - WIND_CHARGED
+  - WITHER

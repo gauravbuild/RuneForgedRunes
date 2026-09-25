@@ -1,0 +1,23 @@
+# List the rune IDs players can buy. Omit mode to use that rune's purchase settings
+# from runes.yml. Give an item its own mode, price, and currency settings to override.
+# COMMANDS mode needs PlaceholderAPI and a numeric balance placeholder.
+# Every charge command runs as console; use %player% and %price%.
+items:
+  VAMPIRE:
+    rune: VAMPIRE
+    mode: VAULT
+    price: 100
+  EXECUTIONER: {rune: EXECUTIONER}
+  VENOM: {rune: VENOM}
+  FROSTBITE: {rune: FROSTBITE}
+  THUNDERSTRIKE: {rune: THUNDERSTRIKE}
+  VEIN_MINER: {rune: VEIN_MINER}
+  TIMBER: {rune: TIMBER}
+  HERMES: {rune: HERMES}
+  DRAGON_FLY: {rune: DRAGON_FLY}
+  # custom_example:
+  #   rune: YOUR_CUSTOM_RUNE
+  #   mode: COMMANDS
+  #   price: 1
+  #   balance-placeholder: '%credits_balance%'
+  #   commands: ['credit take %player% %price%']

@@ -1,0 +1,9 @@
+messages:
+  only-players: '&cOnly players can use this command.'
+  config-reloaded: '&aConfiguration reloaded.'
+  invalid-player: '&cPlayer not found.'
+  rune-received: '&aYou received a <rune_name>!'
+  rune-applied: '&aRune successfully applied!'
+  rune-failed: '&cThe rune shattered.'
+  no-slots: '&cNo empty sockets.'
+  wrong-item: '&cThis rune cannot be applied here.'

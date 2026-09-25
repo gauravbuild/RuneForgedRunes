@@ -1,0 +1,799 @@
+# All shipped runes are editable. IDs are persistent: do not rename an ID on a live server.
+# Add abilities with trigger, conditions (chance 0-100, cooldown seconds, is_sneaking,
+# health_below_percent, target_type) and effects. Legacy rune effects remain available.
+# Effects: HEAL:amount=2, FREEZE:ticks=60, VORTEX_PULL:radius=5,speed=0.5,
+# BLEED:ticks=60,damage=1, PARTICLE:type=FLAME,count=10,
+# PLAY_SOUND:sound=ENTITY_PLAYER_LEVELUP, COMMAND:console:say {player} forged a rune
+# See effects-list.yml and partciles-list.yml in the plugin folder for supported entries.
+# Purchase defaults: mode VAULT, price 100. Set purchase.mode to COMMANDS for a custom
+# currency, with purchase.price equal to the cost, a numeric PlaceholderAPI
+# purchase.balance-placeholder (e.g. '%credits_balance%') and purchase.commands
+# such as ['credit take %player% %price%']. Use a fixed amount instead if
+# preferred. Set mode DISABLED to hide purchases.
+default-abilities-migrated: true
+runes:
+  VAMPIRE:
+    display-name: '&dVampire Rune'
+    category: COMBAT
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1001
+    glow: true
+    lore: ['&7Chance to heal 2 HP on hit.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [MELEE_WEAPON]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    purchase:
+      mode: VAULT
+      price: 100
+      balance-placeholder: ''
+      commands: []
+    abilities:
+      siphon: {trigger: ATTACK_ENTITY, conditions: {chance: 25, cooldown: 1}, effects: ['HEAL:amount=2'], description: ['&7Chance to restore health on hit.'], action-bar: '&dVampire: health restored!'}
+  EXECUTIONER:
+    display-name: '&6Executioner Rune'
+    category: COMBAT
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1002
+    glow: true
+    lore: ['&7Deal +50% damage if enemy HP < 20%.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [MELEE_WEAPON]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      execute: {trigger: ATTACK_ENTITY, conditions: {}, effects: ['DAMAGE_BOOST:multiplier=1.5,health_below=20'], description: ['&7Deal 50% more damage to weakened enemies.'], action-bar: '&6Executioner!'}
+  VENOM:
+    display-name: '&bVenom Rune'
+    category: COMBAT
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1003
+    glow: true
+    lore: ['&7Apply Poison II (3s) on hit.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [MELEE_WEAPON]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      poison: {trigger: ATTACK_ENTITY, conditions: {}, effects: ['POTION:type=POISON,target=VICTIM,ticks=60,level=2'], description: ['&7Poison II for 3 seconds on hit.'], action-bar: '&aVenom!'}
+  FROSTBITE:
+    display-name: '&bFrostbite Rune'
+    category: COMBAT
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1004
+    glow: true
+    lore: ['&7Apply Slowness II (3s) on hit.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [MELEE_WEAPON]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      frost: {trigger: ATTACK_ENTITY, conditions: {}, effects: ['POTION:type=SLOWNESS,target=VICTIM,ticks=60,level=2'], description: ['&7Slow II for 3 seconds on hit.'], action-bar: '&bFrostbite!'}
+  THUNDERSTRIKE:
+    display-name: '&6Thunderstrike Rune'
+    category: COMBAT
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1005
+    glow: true
+    lore: ['&710% chance to strike lightning on hit.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [MELEE_WEAPON]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      storm: {trigger: ATTACK_ENTITY, conditions: {chance: 10}, effects: ['LIGHTNING:damage=2'], description: ['&710% chance to strike your target.'], action-bar: '&eThunderstrike!'}
+  TANK:
+    display-name: '&bTank Rune'
+    category: COMBAT
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1006
+    glow: true
+    lore: ['&7-5% incoming damage.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ARMOR]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      guard: {trigger: TAKE_DAMAGE, conditions: {}, effects: ['DAMAGE_REDUCTION:percent=5'], description: ['&7Take 5% less damage.'], action-bar: ''}
+  REFLECT:
+    display-name: '&6Reflect Rune'
+    category: COMBAT
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1007
+    glow: true
+    lore: ['&7Attacker takes 10% of damage dealt.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ARMOR]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      thorns: {trigger: TAKE_DAMAGE, conditions: {}, effects: ['REFLECT_DAMAGE:percent=10'], description: ['&7Reflect 10% of damage to attackers.'], action-bar: '&cDamage reflected!'}
+  ADRENALINE:
+    display-name: '&bAdrenaline Rune'
+    category: COMBAT
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1008
+    glow: true
+    lore: ['&7Gain Speed II (5s) below 3 hearts.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ARMOR]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      rush: {trigger: TAKE_DAMAGE, conditions: {health_below_percent: 30}, effects: ['POTION:type=SPEED,ticks=100,level=2'], description: ['&7Speed II below 3 hearts.'], action-bar: '&cAdrenaline rush!'}
+  SNIPER:
+    display-name: '&bSniper Rune'
+    category: COMBAT
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1009
+    glow: true
+    lore: ['&7Arrows deal +20% damage.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [BOW]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      precision: {trigger: BOW_HIT, conditions: {}, effects: ['DAMAGE_BOOST:multiplier=1.2'], description: ['&7Your arrows deal 20% more damage.'], action-bar: '&eSniper shot!'}
+  PARRY:
+    display-name: '&fParry Rune'
+    category: COMBAT
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1010
+    glow: true
+    lore: ['&75% chance to block an attack.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [MELEE_WEAPON]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      parry: {trigger: TAKE_DAMAGE, conditions: {chance: 5}, effects: ['CANCEL_DAMAGE:attack_only=true'], description: ['&75% chance to parry an attack.'], action-bar: '&fParried!'}
+  VEIN_MINER:
+    display-name: '&dVein Miner Rune'
+    category: MINING
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1011
+    glow: true
+    lore: ['&7Sneak and break an entire ore vein.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    abilities:
+      vein: {trigger: MINE_BLOCK, conditions: {is_sneaking: true}, effects: ['VEIN_MINE:max_blocks=32'], description: ['&7Sneak to mine a connected ore vein.'], action-bar: '&bVein mined!'}
+  SMELTER:
+    display-name: '&bSmelter Rune'
+    category: MINING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1012
+    glow: true
+    lore: ['&7Auto-smelt iron and gold ore drops.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      smelt: {trigger: BLOCK_DROPS, conditions: {}, effects: ['SMELT_DROP:'], description: ['&7Smelt iron and gold ore drops.'], action-bar: ''}
+  HASTE:
+    display-name: '&6Haste Rune'
+    category: MINING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1013
+    glow: true
+    lore: ['&7Passive Haste II while holding.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      haste: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=HASTE,ticks=40,level=2'], description: ['&7Haste II while holding.'], action-bar: ''}
+  GEM_FINDER:
+    display-name: '&dGem Finder Rune'
+    category: MINING
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1014
+    glow: true
+    lore: ['&70.1% chance of a diamond from stone.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    abilities:
+      gem: {trigger: MINE_BLOCK, conditions: {chance: 0.1, block_type: STONE}, effects: ['EXTRA_DROP:material=DIAMOND,block=STONE'], description: ['&7Rarely find a diamond in stone.'], action-bar: '&bYou found a diamond!'}
+  LIGHT:
+    display-name: '&fLight Rune'
+    category: MINING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1015
+    glow: true
+    lore: ['&7Passive night vision while holding.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      vision: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=NIGHT_VISION,ticks=240,level=1'], description: ['&7Night vision while holding.'], action-bar: ''}
+  OBSIDIAN_BREAKER:
+    display-name: '&bObsidian Breaker Rune'
+    category: MINING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1016
+    glow: true
+    lore: ['&7Haste III while holding a pickaxe.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      breaker: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=HASTE,ticks=40,level=3'], description: ['&7Haste III while holding a pickaxe.'], action-bar: ''}
+  EXPERIENCE:
+    display-name: '&bExperience Rune'
+    category: MINING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1017
+    glow: true
+    lore: ['&7Doubles XP drops from ores.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      wisdom: {trigger: MINE_BLOCK, conditions: {}, effects: ['MULTIPLY_XP:multiplier=2'], description: ['&7Double ore experience drops.'], action-bar: ''}
+  MAGNET:
+    display-name: '&bMagnet Rune'
+    category: MINING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1018
+    glow: true
+    lore: ['&7Mined items go to your inventory.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      magnet: {trigger: BLOCK_DROPS, conditions: {}, effects: ['MAGNET_DROPS:'], description: ['&7Send mined drops into your inventory.'], action-bar: ''}
+  TUNNEL:
+    display-name: '&6Tunnel Rune'
+    category: MINING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1019
+    glow: true
+    lore: ['&73x3 mining when sneaking, 10s cooldown.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      tunnel: {trigger: MINE_BLOCK, conditions: {is_sneaking: true, cooldown: 10}, effects: ['TUNNEL:radius=1'], description: ['&7Sneak-mine a 3x3 tunnel every 10s.'], action-bar: '&6Tunnel cleared!'}
+  DURABILITY:
+    display-name: '&fDurability Rune'
+    category: MINING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1020
+    glow: true
+    lore: ['&710% chance to ignore durability loss.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      sturdy: {trigger: ITEM_DAMAGE, conditions: {chance: 10}, effects: ['CANCEL_DAMAGE:'], description: ['&710% chance to prevent wear.'], action-bar: ''}
+  HARVESTER:
+    display-name: '&6Harvester Rune'
+    category: FARMING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1021
+    glow: true
+    lore: ['&7Harvest mature crops in a 3x3 area.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      harvest: {trigger: MINE_BLOCK, conditions: {}, effects: ['HARVEST:radius=1'], description: ['&7Harvest nearby mature crops.'], action-bar: '&aHarvested!'}
+  REPLANT:
+    display-name: '&fReplant Rune'
+    category: FARMING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1022
+    glow: true
+    lore: ['&7Automatically replant mature crops.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      replant: {trigger: MINE_BLOCK, conditions: {}, effects: ['REPLANT:'], description: ['&7Replant mature crops automatically.'], action-bar: ''}
+  FERTILIZER:
+    display-name: '&bFertilizer Rune'
+    category: FARMING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1023
+    glow: true
+    lore: ['&7Right click to fertilize with bonemeal.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      fertilize: {trigger: RIGHT_CLICK, conditions: {cooldown: 5}, effects: ['FERTILIZE:'], description: ['&7Right-click crops to grow them.'], action-bar: '&aCrops fertilized!'}
+  GREEN_THUMB:
+    display-name: '&bGreen Thumb Rune'
+    category: FARMING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1024
+    glow: true
+    lore: ['&7+20% crop yield.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      yield: {trigger: MINE_BLOCK, conditions: {}, effects: ['CROP_YIELD:percent=20'], description: ['&7Chance for extra mature crop drops.'], action-bar: ''}
+  SICKLE:
+    display-name: '&bSickle Rune'
+    category: FARMING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1025
+    glow: true
+    lore: ['&7Break leaves and crops in a 3-block radius.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      sickle: {trigger: MINE_BLOCK, conditions: {}, effects: ['HARVEST:radius=3'], description: ['&7Harvest nearby mature crops and leaves.'], action-bar: '&aSickle harvested!'}
+  PUMPKIN_KING:
+    display-name: '&bPumpkin King Rune'
+    category: FARMING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1026
+    glow: true
+    lore: ['&7+50% pumpkin and melon drops.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE_OR_HOE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      bounty: {trigger: MINE_BLOCK, conditions: {chance: 50}, effects: ['EXTRA_DROP:material=PUMPKIN,block=PUMPKIN', 'EXTRA_DROP:material=MELON_SLICE,block=MELON'], description: ['&7Chance for extra pumpkins or melons.'], action-bar: ''}
+  LIVESTOCK:
+    display-name: '&6Livestock Rune'
+    category: FARMING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1027
+    glow: true
+    lore: ['&710% chance for double animal loot.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      bounty: {trigger: KILL_ENTITY, conditions: {chance: 10}, effects: ['DOUBLE_LOOT:animals=true'], description: ['&7Chance to double animal loot.'], action-bar: '&6Extra loot!'}
+  HYDRATION:
+    display-name: '&fHydration Rune'
+    category: FARMING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1028
+    glow: true
+    lore: ['&7Protect farmland from trampling.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      soil: {trigger: FARMLAND_TRAMPLE, conditions: {}, effects: ['CANCEL_TRAMPLE:'], description: ['&7Prevent farmland trampling.'], action-bar: ''}
+  SUNLIGHT:
+    display-name: '&bSunlight Rune'
+    category: FARMING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1029
+    glow: true
+    lore: ['&7Crops grow faster in a 5-block radius.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      grow: {trigger: PASSIVE, conditions: {chance: 5}, effects: ['GROW_CROPS:radius=5'], description: ['&7Nearby crops grow faster.'], action-bar: ''}
+  GOLD_RUSH:
+    display-name: '&dGold Rush Rune'
+    category: FARMING
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1030
+    glow: true
+    lore: ['&71% chance of gold nuggets from mature crops.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HOE]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    abilities:
+      gold: {trigger: MINE_BLOCK, conditions: {chance: 1, is_mature: true}, effects: ['GOLD_FROM_CROPS:'], description: ['&7Rare gold nuggets from ripe crops.'], action-bar: '&6Gold rush!'}
+  TIMBER:
+    display-name: '&dTimber Rune'
+    category: FORAGING
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1031
+    glow: true
+    lore: ['&7Break an entire natural tree.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    abilities:
+      tree: {trigger: MINE_BLOCK, conditions: {}, effects: ['TIMBER:max_blocks=32'], description: ['&7Chop connected natural logs.'], action-bar: '&aTimber!'}
+  LEAF_BLOWER:
+    display-name: '&bLeaf Blower Rune'
+    category: FORAGING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1032
+    glow: true
+    lore: ['&7Break leaves in a 3x3 area.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      leaves: {trigger: MINE_BLOCK, conditions: {}, effects: ['CLEAR_LEAVES:radius=1'], description: ['&7Clear nearby leaves.'], action-bar: ''}
+  APPLE_FINDER:
+    display-name: '&fApple Finder Rune'
+    category: FORAGING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1033
+    glow: true
+    lore: ['&7Extra chance for apples from oak leaves.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      apples: {trigger: MINE_BLOCK, conditions: {chance: 10}, effects: ['EXTRA_DROP:material=APPLE,block=OAK_LEAVES'], description: ['&7Chance for extra apples from oak leaves.'], action-bar: '&cAn apple!'}
+  SAPLING_PLANTER:
+    display-name: '&fSapling Planter Rune'
+    category: FORAGING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1034
+    glow: true
+    lore: ['&7Replant saplings from natural trees.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      sapling: {trigger: MINE_BLOCK, conditions: {}, effects: ['PLANT_SAPLING:'], description: ['&7Replant a natural tree sapling.'], action-bar: ''}
+  WOOD_CHIPPER:
+    display-name: '&bWood Chipper Rune'
+    category: FORAGING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1035
+    glow: true
+    lore: ['&710% chance for double natural-log drops.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      chip: {trigger: MINE_BLOCK, conditions: {chance: 10}, effects: ['DOUBLE_LOG:'], description: ['&7Chance for an extra natural log.'], action-bar: ''}
+  SPEED_CHOP:
+    display-name: '&bSpeed Chop Rune'
+    category: FORAGING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1036
+    glow: true
+    lore: ['&7Haste II while holding an axe.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      chop: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=HASTE,ticks=40,level=2'], description: ['&7Haste II while holding an axe.'], action-bar: ''}
+  SILK_TOUCH:
+    display-name: '&6Silk Touch Rune'
+    category: FORAGING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1037
+    glow: true
+    lore: ['&7Silk Touch effect on an axe.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      silk: {trigger: MINE_BLOCK, conditions: {}, effects: ['SILK_DROP:'], description: ['&7Silk-touch leaves with your axe.'], action-bar: ''}
+  CHARCOAL:
+    display-name: '&bCharcoal Rune'
+    category: FORAGING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1038
+    glow: true
+    lore: ['&7Natural logs drop charcoal.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      coal: {trigger: MINE_BLOCK, conditions: {}, effects: ['CHARCOAL_DROP:'], description: ['&7Natural logs drop charcoal.'], action-bar: ''}
+  NATURES_GIFT:
+    display-name: '&6Nature’s Gift Rune'
+    category: FORAGING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1039
+    glow: true
+    lore: ['&7Chance for flowers from natural trees.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      flowers: {trigger: MINE_BLOCK, conditions: {chance: 10}, effects: ['NATURE_DROP:'], description: ['&7Chance for a flower from natural trees.'], action-bar: '&dNature''s gift!'}
+  BARK_STRIPPER:
+    display-name: '&fBark Stripper Rune'
+    category: FORAGING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1040
+    glow: true
+    lore: ['&7Shift-right-click strips nearby natural logs.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [AXE]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      strip: {trigger: RIGHT_CLICK, conditions: {is_sneaking: true, cooldown: 2}, effects: ['STRIP_LOGS:radius=2'], description: ['&7Sneak-right-click to strip nearby logs.'], action-bar: '&6Bark stripped!'}
+  SOULBOUND:
+    display-name: '&dSoulbound Rune'
+    category: ENCHANTING
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1041
+    glow: true
+    lore: ['&7Keep the item on death; consume this rune.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    abilities:
+      bind: {trigger: DEATH, conditions: {}, effects: ['SOULBOUND:'], description: ['&7Keep this item on death (consumes rune).'], action-bar: ''}
+  UNBREAKING_IV:
+    display-name: '&6Unbreaking IV Rune'
+    category: ENCHANTING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1042
+    glow: true
+    lore: ['&7Greatly increase equipment durability.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      durable: {trigger: ITEM_DAMAGE, conditions: {chance: 70}, effects: ['CANCEL_DAMAGE:'], description: ['&7Greatly reduce equipment wear.'], action-bar: ''}
+  KNOWLEDGE:
+    display-name: '&bKnowledge Rune'
+    category: ENCHANTING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1043
+    glow: true
+    lore: ['&7+50% XP while holding.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      learn: {trigger: GAIN_XP, conditions: {}, effects: ['MULTIPLY_XP:multiplier=1.5'], description: ['&7Gain 50% more experience.'], action-bar: ''}
+  REPAIR:
+    display-name: '&6Repair Rune'
+    category: ENCHANTING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1044
+    glow: true
+    lore: ['&7Use XP to repair your equipment.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      mend: {trigger: GAIN_XP, conditions: {}, effects: ['REPAIR_WITH_XP:amount=2'], description: ['&7Spend XP to repair your held item.'], action-bar: ''}
+  ALCHEMIST:
+    display-name: '&bAlchemist Rune'
+    category: ENCHANTING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1045
+    glow: true
+    lore: ['&710% chance of a potion from ores.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [PICKAXE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      potion: {trigger: MINE_BLOCK, conditions: {chance: 10, block_suffix: ORE}, effects: ['ORE_POTION:'], description: ['&7Chance to find a potion while mining ores.'], action-bar: '&dA potion!'}
+  INSIGHT:
+    display-name: '&bInsight Rune'
+    category: ENCHANTING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1046
+    glow: true
+    lore: ['&7Display mob health in the action bar.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      insight: {trigger: PASSIVE, conditions: {cooldown: 1}, effects: ['SHOW_HEALTH:'], description: ['&7See targeted mob health in the action bar.'], action-bar: ''}
+  GLOW:
+    display-name: '&fGlow Rune'
+    category: ENCHANTING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1047
+    glow: true
+    lore: ['&7Gain the glowing effect.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      glow: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=GLOWING,ticks=40,level=1'], description: ['&7Glow while held.'], action-bar: ''}
+  LUCK:
+    display-name: '&bLuck Rune'
+    category: ENCHANTING
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1048
+    glow: true
+    lore: ['&7Increase your luck attribute.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      luck: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=LUCK,ticks=40,level=1'], description: ['&7Luck while held.'], action-bar: ''}
+  SCHOLAR:
+    display-name: '&fScholar Rune'
+    category: ENCHANTING
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1049
+    glow: true
+    lore: ['&7Reduce anvil repair cost by 20%.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      scholar: {trigger: ANVIL, conditions: {}, effects: ['ANVIL_DISCOUNT:percent=20'], description: ['&7Pay 20% less anvil repair cost.'], action-bar: ''}
+  PRESERVATION:
+    display-name: '&6Preservation Rune'
+    category: ENCHANTING
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1050
+    glow: true
+    lore: ['&7Protect equipment from breaking once.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [ALL]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      save: {trigger: ITEM_DAMAGE, conditions: {}, effects: ['PRESERVE_ITEM:'], description: ['&7Once, prevent the item from breaking.'], action-bar: '&6Equipment preserved!'}
+  HERMES:
+    display-name: '&dHermes Rune'
+    category: SORCERY
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1051
+    glow: true
+    lore: ['&7Passive Speed II.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [BOOTS]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    abilities:
+      swift: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=SPEED,ticks=40,level=2'], description: ['&7Speed II while worn.'], action-bar: ''}
+  SPRING:
+    display-name: '&bSpring Rune'
+    category: SORCERY
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1052
+    glow: true
+    lore: ['&7Passive Jump Boost II.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [BOOTS]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      leap: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=JUMP_BOOST,ticks=40,level=2'], description: ['&7Jump Boost II while worn.'], action-bar: ''}
+  FEATHERWEIGHT:
+    display-name: '&bFeatherweight Rune'
+    category: SORCERY
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1053
+    glow: true
+    lore: ['&7No fall damage.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [BOOTS]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      fall: {trigger: TAKE_DAMAGE, conditions: {}, effects: ['PREVENT_FALL:'], description: ['&7Ignore fall damage.'], action-bar: ''}
+  DOLPHIN:
+    display-name: '&bDolphin Rune'
+    category: SORCERY
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1054
+    glow: true
+    lore: ['&7Dolphin’s Grace in water.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HELMET]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      swim: {trigger: PASSIVE, conditions: {}, effects: ['WATER_POTION:type=DOLPHINS_GRACE,ticks=40'], description: ['&7Dolphin''s Grace in water.'], action-bar: ''}
+  OXYGEN:
+    display-name: '&6Oxygen Rune'
+    category: SORCERY
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1055
+    glow: true
+    lore: ['&7Water Breathing.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HELMET]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      breathe: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=WATER_BREATHING,ticks=40,level=1'], description: ['&7Breathe underwater.'], action-bar: ''}
+  FIREWALKER:
+    display-name: '&dFirewalker Rune'
+    category: SORCERY
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1056
+    glow: true
+    lore: ['&7Fire Resistance.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [LEGGINGS]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    abilities:
+      fire: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=FIRE_RESISTANCE,ticks=40,level=1'], description: ['&7Fire resistance while worn.'], action-bar: ''}
+  SATURATION:
+    display-name: '&6Saturation Rune'
+    category: SORCERY
+    rarity: LEGENDARY
+    base-item: LAPIS_LAZULI
+    custom-model-data: 1057
+    glow: true
+    lore: ['&7Hunger drains 50% slower.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HELMET]
+    default-success-rate: 20
+    default-destroy-rate: 0
+    abilities:
+      food: {trigger: HUNGER_CHANGE, conditions: {chance: 50}, effects: ['CANCEL_HUNGER:'], description: ['&7Half of hunger loss is prevented.'], action-bar: ''}
+  INVISIBILITY:
+    display-name: '&bInvisibility Rune'
+    category: SORCERY
+    rarity: RARE
+    base-item: GOLD_NUGGET
+    custom-model-data: 1058
+    glow: true
+    lore: ['&7Sneak to turn invisible.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [CHESTPLATE]
+    default-success-rate: 40
+    default-destroy-rate: 0
+    abilities:
+      unseen: {trigger: SNEAK, conditions: {cooldown: 1}, effects: ['POTION:type=INVISIBILITY,ticks=60,level=1'], description: ['&7Sneak to turn invisible.'], action-bar: '&7Hidden in the shadows.'}
+  NIGHT_EYE:
+    display-name: '&fNight Eye Rune'
+    category: SORCERY
+    rarity: COMMON
+    base-item: CLAY_BALL
+    custom-model-data: 1059
+    glow: true
+    lore: ['&7Passive Night Vision.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [HELMET]
+    default-success-rate: 60
+    default-destroy-rate: 0
+    abilities:
+      sight: {trigger: PASSIVE, conditions: {}, effects: ['POTION:type=NIGHT_VISION,ticks=240,level=1'], description: ['&7Night vision while worn.'], action-bar: ''}
+  DRAGON_FLY:
+    display-name: '&dDragon Fly Rune'
+    category: SORCERY
+    rarity: MYTHIC
+    base-item: IRON_NUGGET
+    custom-model-data: 1060
+    glow: true
+    lore: ['&7Double-jump forward every 10 seconds.', '', '&aSuccess: {success}% &8| &cDestroy: {destroy}%']
+    target-items: [BOOTS]
+    default-success-rate: 5
+    default-destroy-rate: 0
+    abilities:
+      leap: {trigger: DOUBLE_JUMP, conditions: {cooldown: 10}, effects: ['PARTICLE:type=CLOUD,count=20'], description: ['&7Double-jump forward every 10 seconds.'], action-bar: '&dDragon Fly!'}

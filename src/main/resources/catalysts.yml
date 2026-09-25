@@ -1,0 +1,8 @@
+catalysts:
+  stardust:
+    base-item: NETHER_STAR
+    display-name: "&d&l✧ Stardust ✧"
+    success-bonus: 15
+    lore:
+      - "&7A fragment of a fallen star."
+      - "&7Use on a rune or in the forge to gain &a+{bonus}% &7success."

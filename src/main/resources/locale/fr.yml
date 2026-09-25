@@ -1,0 +1,9 @@
+messages:
+  only-players: '&cRéservé aux joueurs.'
+  config-reloaded: '&aConfiguration rechargée.'
+  invalid-player: '&cJoueur introuvable.'
+  rune-received: '&aVous avez reçu la rune <rune_name> !'
+  rune-applied: '&aRune appliquée avec succès !'
+  rune-failed: '&cLa rune s’est brisée.'
+  no-slots: '&cAucun emplacement libre.'
+  wrong-item: '&cCette rune ne convient pas à cet objet.'

@@ -1,0 +1,32 @@
+name: RuneForgedRunes
+version: 1.0
+main: me.gauravbuilds.runeforgedrunes.RuneForgedRunes
+api-version: '1.16'
+authors: [VortexLabs]
+description: A high-performance Rune system plugin where players apply custom runes to items for permanent buffs using drag-and-drop mechanics.
+softdepend: [Vault, PlaceholderAPI]
+permissions:
+  runeforged.admin:
+    description: Allows taking runes from GUI and using admin commands.
+    default: op
+  runeforgedrunes.apply.dragdrop:
+    description: Allows applying runes directly in the player inventory.
+    default: true
+
+commands:
+  runes:
+    description: Opens the admin Rune Repository or the player Rune Shop
+    usage: /runes [open <category>]
+    aliases: [rune]
+  runeshop:
+    description: Opens the Rune Shop
+    usage: /runeshop
+  runedebug:
+    description: Debug command for error
+    usage: /runedebug
+  runeforge:
+    description: Open the Rune Forge
+    aliases: [ forge ]
+  runesalvage:
+    description: Open Salvage
+    aliases: [salvage]
