@@ -1,43 +1,91 @@
 <div align="center">
-  <h1>✦ RuneForgedRunes ✦</h1>
-  <p><b>Build custom rune abilities in-game for your Minecraft server.</b></p>
+
+<img src="YOUR_IMAGE_LINK_HERE" alt="RuneForgedRunes Banner" width="100%">
+
+# ✦ RuneForgedRunes ✦
+**The Infinite Meta-Skill & Custom Enchant Engine for Minecraft (1.16.5 - 1.21+)**
+
+[![SpigotMC](https://img.shields.io/badge/Spigot-Download-orange.svg?style=for-the-badge&logo=spigotmc)](#) 
+[![Modrinth](https://img.shields.io/badge/Modrinth-Download-green.svg?style=for-the-badge&logo=modrinth)](#) 
+[![Discord](https://img.shields.io/badge/Discord-Join_Community-7289da.svg?style=for-the-badge&logo=discord)]([YOUR_DISCORD_LINK_HERE](https://discord.gg/ckJHr36Bet))
+
+> *Stop writing code. Start forging magic.* <br>
+> RuneForgedRunes is a complete Trigger-Condition-Effect (TCE) engine that lets you create "Beyond Minecraft" abilities like Black Holes, Meteor Strikes, and Chain Lightning—all from a beautiful in-game GUI.
+
 </div>
 
-RuneForgedRunes lets players socket magical runes into equipment. Admins can create runes, assign their triggers and effects, and manage the player shop without writing Java. The plugin ships with 60 editable runes across Combat, Mining, Farming, Foraging, Enchanting, and Sorcery, plus a Custom category for your own creations.
+---
 
-## What can runes do?
+## ⚡ Why Choose RuneForged?
 
-- React to sword swings, attacks, damage, mining, bow hits, fishing casts and reels, right-clicks, sneaking, double-jumps, and more.
-- Create effects such as chain lightning, a black hole, a meteor strike, vein mining, timber chopping, projectiles, potions, particles, and sounds.
-- Show readable ability descriptions on rune items and colored action-bar feedback when abilities activate.
-- Support custom ability triggers, conditions, cooldowns, and effect parameters in `runes.yml`.
+### 🖱️ Immersive Drag & Drop
+No more typing clunky `/enchant` commands. Players can seamlessly pick up a Rune in their inventory and drop it onto their weapons or armor. Want better odds? Drag a **Stardust Catalyst** directly onto a Rune to permanently boost its success rate!
 
-To apply a rune, pick it up in your inventory and click it onto compatible equipment. A Stardust Catalyst can improve an unapplied rune's success rate. The Forge and Salvage menus offer additional ways to manage rune equipment.
+### 🪄 The "No-Code" Ability Builder
+Throw away your YAML editors. Admins can use `/rune editor` to open a stunning 54-slot in-game GUI. Build runes, assign particle effects, set cooldowns, and chain magical abilities together using visual icons. 
 
-## Getting started
+### 🛍️ Built-in Player Shop
+A fully paginated, highly configurable Player Shop (`/runeshop`). Sell your custom runes for standard Vault currency, or use PlaceholderAPI to sell them for custom tokens, voting points, or quest coins. 
 
-1. Put the plugin JAR in your server's `plugins/` folder and restart the server.
-2. Open `/runeshop` as a player or `/rune editor` as an admin.
-3. Edit `plugins/RuneForgedRunes/rune-shop.yml` to select the runes sold in the shop. Changes take effect the next time the shop opens.
-4. Customize rune abilities and per-rune purchase settings in `runes.yml`, and menu presentation in `config.yml`.
-5. Install Vault and an economy provider for money purchases. PlaceholderAPI is needed for command-based custom currencies.
+### ⚙️ "Beyond Minecraft" Physics Engine
+Our engine doesn't just apply vanilla potion effects. It calculates real-time vectors and algorithms:
+* 🎣 Hook a mob with a fishing rod to trigger a **Vortex Pull**.
+* 🥾 Double-jump with your boots to trigger **Dragon Flight**.
+* ⚔️ Swing a sword at the air to launch a **Meteor Strike**.
+* ⛏️ Sneak-mine to trigger **3x3 Tunneling**.
 
-For custom currencies, configure the offer or rune with `mode: COMMANDS`, `price`, a numeric `balance-placeholder`, and console charge commands. For example, `credit take %player% %price%` deducts the configured cost. Make sure the placeholder and charge command refer to the same currency.
+---
 
-## Commands
+## 📦 What's Inside the Box?
+
+RuneForgedRunes generates with **60 hand-crafted, fully configured Runes** ready to play immediately. 
+
+<details>
+<summary><b>🔥 Click to view the 60 Default Runes</b></summary>
+
+* **⚔️ Combat:** Vampire, Executioner, Venom, Frostbite, Thunderstrike, Tank, Reflect, Adrenaline, Sniper, Parry
+* **⛏️ Mining:** Vein Miner, Smelter, Haste, Gem Finder, Light, Obsidian Breaker, Experience, Magnet, Tunnel, Durability
+* **🌾 Farming:** Harvester, Replant, Fertilizer, Green Thumb, Sickle, Pumpkin King, Livestock, Hydration, Sunlight, Gold Rush
+* **🪓 Foraging:** Timber, Leaf Blower, Apple Finder, Sapling Planter, Wood Chipper, Speed Chop, Silk Touch, Charcoal, Nature's Gift, Bark Stripper
+* **🔮 Enchanting:** Soulbound, Unbreaking IV, Knowledge, Repair, Alchemist, Insight, Glow, Luck, Scholar, Preservation
+* **✨ Sorcery:** Hermes, Spring, Featherweight, Dolphin, Oxygen, Firewalker, Saturation, Invisibility, Night Eye, Dragon Fly
+</details>
+
+---
+
+## 📥 Quick Setup
+
+1. Download the latest `RuneForgedRunes.jar` from the [Releases](#) tab.
+2. Drop it into your server's `plugins/` folder.
+3. Restart your server. 
+4. *(Optional)* Install **Vault** and **PlaceholderAPI** for economy support.
+
+### 🌍 Global Localization
+Automatically generates 11 language translation files on startup: *English, Russian, Japanese, Chinese, French, Spanish, Korean, German, Portuguese, Polish, and Arabic.*
+
+---
+
+## 🎮 Commands & Permissions
 
 | Command | Description | Permission |
-| --- | --- | --- |
-| `/runeshop` | Open the paginated player shop. | None |
-| `/runes`, `/rune` | Open the shop for players or the repository for admins. | None |
-| `/runes open <category>` | Open an admin repository category. | `runeforged.admin` |
-| `/rune editor` | Create and edit runes in-game. | `runeforged.admin` |
-| `/rune list` | Open the admin repository (lists runes in console). | `runeforged.admin` |
-| `/rune give <player> <category> <rune> <chance> <amount>` | Give runes. | `runeforged.admin` |
-| `/rune giveorb <player> <rarity> <amount>` | Give rune orbs; `CUSTOM` rolls Custom-category runes. | `runeforged.admin` |
-| `/runeforge` | Open the Forge. | None |
-| `/runesalvage` | Open Salvage. | None |
+| :--- | :--- | :--- |
+| `/runeshop` | Opens the Player Shop to buy runes. | None |
+| `/runeforge` | Opens the Anvil Forge GUI to combine items safely. | None |
+| `/runesalvage`| Opens the GUI to extract applied runes for XP. | None |
+| `/rune editor` | Opens the Admin GUI to build and edit runes. | `runeforged.admin` |
+| `/rune list` | Opens the Admin Repository of all created runes. | `runeforged.admin` |
+| `/rune give` | Gives a specific rune to a player. | `runeforged.admin` |
+| `/rune giveorb` | Spawns an animated Rune Crate (Orb) for unboxing. | `runeforged.admin` |
 
-Applying runes directly through inventory clicks requires the `runeforgedrunes.apply.dragdrop` permission (enabled by default). The admin repository gives runes directly, without charging shop prices.
+*(Players require the `runeforgedrunes.apply.dragdrop` permission to apply runes via inventory clicks).*
 
-The plugin includes English, Russian, Japanese, Chinese, French, Spanish, Korean, German, Portuguese, Polish, and Arabic locale files. Select a language with `locale` in `config.yml`.
+---
+
+<div align="center">
+
+### 🤝 Need Help or Want to Share Your Runes?
+**Join our community of server owners!**
+
+[![Join Discord](https://img.shields.io/badge/Join_Our_Discord-7289da?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/ckJHr36Bet)
+
+</div>
